@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, Modal,Alert } from 'react-native';
+import { StyleSheet, Text, View, Modal,Alert,KeyboardAvoidingView } from 'react-native';
 import {TextInput,Button} from 'react-native-paper'
 import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
@@ -7,12 +7,34 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 const CreateEmployee = () =>{
-    const [Name,setName] = useState("")
-    const [Phone,setPhone] = useState("")
+    const [name,setName] = useState("")
+    const [phone,setPhone] = useState("")
     const [email,setEmail] = useState("")
     const [salary,setSalary] = useState("")
     const [picture,setPicture] = useState("")
+    const [position,setPosition] = useState("")
     const [modal,setModal] = useState(false)
+
+    const submitData = ({navigation})=>{
+        fetch("http://19554b0fd6b3.ngrok.io/send-data",{
+            method:"post",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                name,
+                email,
+                phone,
+                salary,
+                picture,
+                position
+            })
+        }).then(res=>res.json)
+        .then(data=>{
+            Alert(`${data.name} Saved success`)
+            navigation.navigate("Home")
+        })
+    }
 
     const pickFromGallery = async ()=>{
         const {granted} = await Permissions.askAsync(Permissions.CAMERA_ROLL)
@@ -79,10 +101,11 @@ const CreateEmployee = () =>{
 
     return (
         <View style={styles.root}>
+            <KeyboardAvoidingView>
             <TextInput
                 label="Name"
                 style={styles.inputStyle}
-                value={Name}
+                value={name}
                 theme={theme}
                 mode="outlined"
                 onChangeText={text => setName(text)}
@@ -98,11 +121,19 @@ const CreateEmployee = () =>{
             <TextInput
                 label="Phone"
                 style={styles.inputStyle}
-                value={Phone}
+                value={phone}
                 theme={theme}
                 keyboardType="number-pad"
                 mode="outlined"
                 onChangeText={text => setPhone(text)}
+            />
+             <TextInput
+                label="Position"
+                style={styles.inputStyle}
+                value={position}
+                theme={theme}
+                mode="outlined"
+                onChangeText={text => setPosition(text)}
             />
             <TextInput
                 label="Salary"
@@ -126,7 +157,7 @@ const CreateEmployee = () =>{
             icon="content-save" 
             theme={theme}
             mode="contained" 
-            onPress={() => setModal(true)}>
+            onPress={() => submitData()}>
                 Save
             </Button>
             <Modal
@@ -151,6 +182,7 @@ const CreateEmployee = () =>{
             </Button>
                 </View>
                 </Modal>
+                </KeyboardAvoidingView>
         </View>
     )
 }

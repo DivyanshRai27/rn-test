@@ -1,15 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View,Image,FlatList } from 'react-native';
+import React,{useEffect,useState} from 'react';
+import { StyleSheet, Text, View,Image,FlatList,ActivityIndicator } from 'react-native';
 import {Card, FAB} from 'react-native-paper'
 
 function Home({navigation}) {
-    const data = [
-        {id:"1",name:"Divyansh",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"2",name:"Div",position:"web",email:"abc@gmail.com",phone:"123",salary:"50000000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"3",name:"Riya",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"4",name:"Nishi",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"5",name:"Raj",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"}
-    ]
+
+    const [data,setData] = useState([])
+    const [loading,setLoading] = useState(true)
+    useEffect(()=>{
+        fetch("http://19554b0fd6b3.ngrok.io/")
+        .then(res=>res.json())
+        .then(results=>{
+            setData(results)
+            setLoading(false)
+        })
+    },[])
 
     const renderList = ((item)=>{
         return(
@@ -33,19 +37,22 @@ function Home({navigation}) {
     })
     return (
         <View style={{flex:1}}>
+            {loading?
+            <ActivityIndicator size="large" color="#0000ff" /> :
+             
             <FlatList 
             data={data}
             renderItem={({item})=>{
                return renderList(item)
             }}
             keyExtractor={item=>item.id}
-            />
+        /> }
               <FAB onPress={()=>navigation.navigate("Create")}
     style={styles.fab}
     small={false}
     icon="plus"
     theme={{colors:{accent:"#006aff"}}}
-  />
+  /> 
         </View>
     )
         
