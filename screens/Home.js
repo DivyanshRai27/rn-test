@@ -6,9 +6,9 @@ function Home({navigation}) {
     const data = [
         {id:"1",name:"Divyansh",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
         {id:"2",name:"Div",position:"web",email:"abc@gmail.com",phone:"123",salary:"50000000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"3",name:"Divy",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"4",name:"Divyans",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
-        {id:"5",name:"Divyan",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"}
+        {id:"3",name:"Riya",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
+        {id:"4",name:"Nishi",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"},
+        {id:"5",name:"Raj",position:"web dev",email:"abc@gmail.com",phone:"123",salary:"5000",picture:"https://images.unsplash.com/flagged/photo-1578848151039-b8916d7c1c34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=521&q=80"}
     ]
 
     const renderList = ((item)=>{
